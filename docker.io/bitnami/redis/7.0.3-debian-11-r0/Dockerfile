@@ -1,0 +1,1 @@
+FROM docker.io/bitnami/redis:7.0.3-debian-11-r0
