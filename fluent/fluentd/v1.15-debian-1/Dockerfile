@@ -8,7 +8,7 @@ USER root
 RUN gem uninstall -I elasticsearch && gem install elasticsearch -v 8.3.2
 RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-document", "--version", "5.2.3"]
 
-COPY fluent.conf /fluentd/etc/
+# COPY fluent.conf /fluentd/etc/
 # COPY entrypoint.sh /bin/
 
 USER fluent
