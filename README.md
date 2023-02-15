@@ -37,14 +37,36 @@ GitHub截图如下，也可以通过以下地址查看本文的实例：k8s.gcr.
   ![](images/8.jpg)
 
 8. 等待构建完成之后，进入基本信息页面，直接复制这个公有网址就可以进行镜像拉取了
-
+  ![](images/9.jpg)
 9. 在我们自己要部署的服务器上拉取镜像，记得加上我们之前打的版本号
-
+  ```
+  docker pull registry.cn-hangzhou.aliyuncs.com/mirrors-aliyun/external_storage:latest
+  ```
    输出结果如下
+   ```
+   latest: Pulling from mirrors-aliyun/external_storage
+   a073c86ecf9e: Pull complete 
+   d9d714ee28a7: Pull complete 
+   36dfde95678a: Pull complete 
+   Digest: sha256:bf2c2e662abf2c3daa0ffc608bf98a35fd48ce69510ffbf60d84f9791b737418
+   Status: Downloaded newer image for registry.cn-hangzhou.aliyuncs.com/mirrors-aliyun/external_storage:latest
+   registry.cn-hangzhou.aliyuncs.com/mirrors-aliyun/external_storage:latest
+
+   ```
 10. 再次使用docker images命令查看我们的本地镜像仓库
-
+    ```
+    registry.cn-hangzhou.aliyuncs.com/mirrors-aliyun/external_storage   latest              9b520032a721   4 years ago     45.5MB
+    ```
 11. 这个时候我们可以直接使用我们自己的镜像进行部署了
-
+  ```
+  registry.cn-hangzhou.aliyuncs.com/mirrors-aliyun/external_storage:latest
+  ```
 12. 如果你对镜像的名称有强依赖的要求，那么可以使用以下命令创建一个新的标签，名称和标签名都和官方镜像的一样，注意第三个参数为docker images命令中输出的镜像的IMAGE ID，根据实际情况进行修改
-
+  ```
+  docker tag 9b520032a721 quay.io/external_storage/nfs-client-provisioner:latest
+  ```
 13. 操作完毕之后，再次使用docker images查看我们本地的镜像仓库，可以看到已经有了一个和官方镜像一样的本地镜像了，此时就可以当做官方的镜像正常使用了。
+    ```
+    quay.io/external_storage/nfs-client-provisioner                     latest              9b520032a721   4 years ago     45.5MB
+registry.cn-hangzhou.aliyuncs.com/mirrors-aliyun/external_storage   latest              9b520032a721   4 years ago     45.5MB
+    ```
